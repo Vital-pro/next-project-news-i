@@ -3,8 +3,8 @@ import  {get2AllNews}  from '../../services/get2AllNews';
 import data from '../../data2.json';
 
 export async function GET(params:Request) {
-  // await get2AllNews();
-  return new Response(JSON.stringify(await get2AllNews()));
+  await get2AllNews();
+  // return new Response(JSON.stringify(await get2AllNews()));
 
 }
 

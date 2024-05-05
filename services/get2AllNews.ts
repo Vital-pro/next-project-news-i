@@ -1,11 +1,14 @@
-import puppeteer from 'puppeteer';
+import puppeteer, { Browser } from 'puppeteer';
 import { writeFile } from 'fs';
 import { redirect } from 'next/navigation';
 
 const url = 'https://gorod24.online/sudak/news';
 
 export async function get2AllNews() {
-  let browser = await puppeteer.launch({ headless: false });
+  let browser: Browser = await puppeteer.launch({
+    headless: false,
+    executablePath: '/path/to/Chrome',
+  });
   let page = await browser.newPage();
   await page.setViewport({
     width: 1600,
