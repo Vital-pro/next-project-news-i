@@ -131,7 +131,7 @@ const runScraper = async () => {
 
   //****end****** */
 
-  writeFile('data2.json', JSON.stringify(newsPage), 'utf-8', (err) =>
+  writeFile('data2.json', JSON.stringify(newsPage), 'utf-8', (err: any) =>
     err ? console.log(err) : console.log('File written successfully!')
   );
 
