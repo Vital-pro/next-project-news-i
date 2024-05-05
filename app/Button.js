@@ -6,6 +6,11 @@ const Button = () => {
 
   const router = useRouter()
 
+  /**
+   * Handles the click event and refreshes the router and navigates to a new page.
+   *
+   * @return {void} This function does not return anything.
+   */
   const handleClick = () => {
     router.refresh()
     router.push(`/?newsButton=${true}`);
