@@ -5,10 +5,7 @@ import { redirect } from 'next/navigation';
 const url = 'https://gorod24.online/sudak/news';
 
 export async function get2AllNews() {
-  let browser: Browser = await puppeteer.launch({
-    headless: false,
-    executablePath: '/path/to/Chrome',
-  });
+  let browser: Browser = await puppeteer.launch({ headless: false });
   let page = await browser.newPage();
   await page.setViewport({
     width: 1600,
