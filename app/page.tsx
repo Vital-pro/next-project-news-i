@@ -6,7 +6,7 @@ const { writeFile } = require('fs') ;
 import { redirect } from 'next/navigation';
 
 
-export default function Home({searchParams}: {searchParams: any}) {
+export default function Home({searchParams}: {searchParams: Record<string, unknown>}) {
 
   if(searchParams.newsButton) {
     console.log('------', searchParams)
