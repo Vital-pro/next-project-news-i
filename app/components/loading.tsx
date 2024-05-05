@@ -1,6 +1,6 @@
 const loading = () => {
   return (
-    <div>loading...</div>
+    <h2>loading...</h2>
   )
 }
 
