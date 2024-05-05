@@ -3,31 +3,156 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --index: calc(1vw + 1vh);
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  position: relative;
+  background-color: #f2f2dcfc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100dvh;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.main {
+  flex: 1;
+}
+
+.container {
+  max-width: 1170px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.geolocation-wrapper {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 20px;
+}
+
+.geolocation-wrapper h1 {
+  font-size: clamp(2.625rem, 1.562rem + 2.22vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #285e8a;
+}
+
+.geolocation-wrapper h1:hover {
+  animation: color-rotate 1s linear infinite;
+}
+
+@keyframes color-rotate {
+  from {
+    filter: hue-rotate(0deg);
+  }
+
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+time {
+  color: #89622f;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.geolocation-wrapper a {
+  background-color: #285e8a;
+  box-shadow: 16px 12px 15px 3px #607D8B;;
+  padding: 12px 18px;
+  border-radius: 2rem;
+  color: #fff;
+  margin-left: auto;
+  transition: background-color 0.3s ease;
+}
+
+.geolocation-wrapper a:hover {
+  background-color: #5496cc;
+  /* animation: color-rotate 1s linear infinite; */
+
+}
+
+.news-box {
+  display: flex;
+  flex-direction: column;
+  gap: calc((1vw + 1vh) * 1.28);
+  /* grid-template-columns: 1fr; */
+
+}
+
+.item-inner {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 5px 10px 20px 0px #c1c1c1;
+}
+
+.item-inner h2 {
+  color: #222;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 0.601rem + 1.35vw, 1.625rem);
+
+}
+
+.item-inner h2 p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.item-inner img {
+  /* background-color: #f9d100; */
+  background-color: #009688;
+  max-width: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.item-inner a {
+  align-items: center; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc((1vw + 1vh) * 1.28);
+}
+
+@media screen and (max-width: 992px) {
+  .geolocation-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .geolocation-wrapper a {
+    grid-row: none;
+    margin-left: inherit;
+    margin-right: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .item-inner a {
+    grid-template-columns: 1fr;
+  }
+
+  .geolocation-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .geolocation-wrapper h1 {
+    font-size: clamp(2.125rem, 1.767rem + 1.79vw, 2.625rem);
+  }
+
+  .geolocation-wrapper time {
+    font-size: clamp(1rem, 0.821rem + 0.89vw, 1.25rem);
+  }
+
+  .geolocation-wrapper a {
+    font-size: clamp(0.875rem, 0.786rem + 0.45vw, 1rem);
   }
 }
