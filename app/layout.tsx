@@ -31,7 +31,7 @@ export default function RootLayout({
               {date.toLocaleString('ru-RU', { month: 'long', day: 'numeric' })}{' '}
               {date.getFullYear()} г.
             </time>
-            {/* <Link href={'/api'}>Получить свежие вести</Link> */}
+            <Link href={'/api'}>Получить свежие вести</Link>
           </div>
           {children}
         </main>
