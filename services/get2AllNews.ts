@@ -29,7 +29,7 @@ export async function get2AllNews() {
           '.info-block-big'
       )
     );
-    const data = newsPods.map((newOne) => ({
+    const data: any = newsPods.map((newOne) => ({
       title:
         newOne.querySelector('a >h2')?.textContent ||
         newOne.querySelector('a > span')?.textContent,
@@ -66,15 +66,32 @@ export async function get2AllNews() {
   ]);
 
 
-  const newsPage1 = await page.evaluate(() => {
+  // const newsPage1 = await page.evaluate(() => {
+  //   const newsOne = {
+  //     title: document.querySelector('article h2')?.textContent,
+  //     image: document
+  //       .querySelector('div > div.post-thumbnail-wrapper > img')
+  //       ?.getAttribute('src'),
+  //     link: document.querySelector(
+  //       'article > header > div > span.byline > span > a'
+  //     )?.getAttribute('href'),
+  //   };
+  //   return newsOne;
+  // });
+
+  const newsPage1: {
+    title: string | null | undefined;
+    image: string | null | undefined;
+    link: string | null | undefined;
+  } = await page.evaluate(() => {
     const newsOne = {
       title: document.querySelector('article h2')?.textContent,
       image: document
         .querySelector('div > div.post-thumbnail-wrapper > img')
         ?.getAttribute('src'),
-      link: document.querySelector(
-        'article > header > div > span.byline > span > a'
-      )?.href,
+      link: document
+        .querySelector('article > header > div > span.byline > span > a')
+        ?.getAttribute('href'),
     };
     return newsOne;
   });
@@ -82,12 +99,14 @@ export async function get2AllNews() {
   await page.goto('http://vesti-sudak.ru/');
   const newLink = await page.evaluate(() => {
     const nemLinkOne = {
-      link: document.querySelector('header > h2 > a')?.href,
+      link: document.querySelector('header > h2 > a')?.getAttribute('href'),
     }
     return nemLinkOne
   })
 
-  newsPage1.link = newLink.link
+  // newsPage1.link = newLink.link || undefined;
+  newsPage1.link =
+    newLink.link && newLink.link !== null ? newLink.link : undefined;
 
   newsPage = [newsPage1, ...newsPage];
 
